@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.3.3'
 
 gem 'devise'
-
+gem 'nokogiri'
 gem 'rails', '5.0.2'
 gem 'puma'
 gem 'pg'
