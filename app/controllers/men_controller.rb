@@ -40,6 +40,14 @@ class MenController < ApplicationController
   end
 
 
+  def destroy
+    man = Man.find(params[:id])
+    man.destroy
+
+    redirect_to men_path(Man.all)
+  end
+
+
   def edit
     @man = Man.find(params[:id])
   end
@@ -50,6 +58,8 @@ class MenController < ApplicationController
     redirect_to man_path(@man)
   end
 
+ private
+  
   def men_params
     params.require(:man).permit(:name, :height, :weight, :birthdate, :description, :price, services: [], photos: [])
   end
