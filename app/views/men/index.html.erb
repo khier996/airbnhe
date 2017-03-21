@@ -3,7 +3,7 @@
 
 
   <% if @men.present? %>
-    <div class="container text-center padded">
+    <div class="container text-center">
       <h2>Select your man!</h2>
     </div>
     <div class="row">
@@ -11,10 +11,9 @@
       <div class="col-xs-12 col-sm-6 col-md-4">
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= man.url %>');">
         <div class="card-description">
-          <%= man.name %>
-          <%= man.summary %>
-          <%= man.height %>
-          <%= man.price %>
+          <h2><%= man.name %></h2>
+          <h3><%= man.summary %></h3>
+          <p><%= man.height %> cm  <%= man.weight %> Kg  <%= man.price %> RMB</p>
         </div>
           <%= link_to('Meet', man_path(man), { class: "btn btn-primary" })%>
       </div>
