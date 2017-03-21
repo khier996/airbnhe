@@ -1,5 +1,5 @@
 class MenController < ApplicationController
-
+  skip_before_action :authenticate_user!, only: :index
   def index
     @men = Man.all
     if params[:search]
@@ -19,13 +19,10 @@ class MenController < ApplicationController
     # end
 
 
-    if params[:services]
+    if params[:services] && params[:services] != "Services"
       @men = @men.select { |man| man.services.include?(params[:services]) }
     end
 
-    if params[:services] == "Services"
-      @men = Man.all
-    end
   end
 
   def new
