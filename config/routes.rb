@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  get 'men/index'
+
   root to: 'pages#home'
 
   mount Attachinary::Engine => "/attachinary"

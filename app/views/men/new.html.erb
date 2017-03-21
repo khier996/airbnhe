@@ -9,6 +9,7 @@
                         order: [:day, :month, :year] %>
 
 
+<%= f.input :summary %>
 <%= f.input :description %>
 <%= f.input :services, :as => :check_boxes, :collection => ["Fake Wedding", "Meet the parents", "Meet the friends", "Cuddling", "Dinner Date", "Park Walk"], :include_hidden => false %>
 <%= f.input :price %>
