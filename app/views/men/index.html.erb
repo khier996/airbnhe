@@ -1,27 +1,23 @@
+<% if @men.present? %>
+  <div class="row">
+    <% @men.each do |man| %>
+  <div class="col-xs-12 col-sm-6 col-md-4">
+  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= man.url %>');">
+  <div class="card-description">
+    <%= man.name %>
+    <%= man.summary %>
+    <%= man.height %>
+    <%= man.price %>
+  </div>
+    <%= link_to('Meet', man_path(man), { class: "btn btn-primary" })%>
+  </div>
+  </div>
+  <% end %>
+</div>
 
-
-
-
-    <% if @men.present? %>
-      <div class="row">
-        <% @men.each do |man| %>
-        <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= man.url %>');">
-          <div class="card-description">
-            <%= man.name %>
-            <%= man.summary %>
-            <%= man.height %>
-            <%= man.price %>
-          </div>
-            <%= link_to('Meet', man_path(man), { class: "btn btn-primary" })%>
-        </div>
-        </div>
-        <% end %>
-      </div>
-
-    <% else %>
-      <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
-    <% end %>
+<% else %>
+  <p>There are no posts containing the term(s) <%= params[:search] %>.</p>
+<% end %>
 
 
 

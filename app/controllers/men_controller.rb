@@ -18,7 +18,6 @@ class MenController < ApplicationController
     #   @men = @men.where("price LIKE ?", "%#{params[:price]}")
     # end
 
-
     if params[:services]
       @men = @men.select { |man| man.services.include?(params[:services]) }
     end
@@ -38,6 +37,17 @@ class MenController < ApplicationController
 
     redirect_to man_path(@man)
 
+  end
+
+
+  def edit
+    @man = Man.find(params[:id])
+  end
+
+  def update
+    @man = Man.find(params[:id])
+    @man.update(men_params)
+    redirect_to man_path(@man)
   end
 
   def men_params
