@@ -1,0 +1,18 @@
+<%= simple_form_for(@man) do |f| %>
+<%= f.input :name %>
+<%= f.input :photos, as: :attachinary %>
+<%= f.input :height, collection: (100..250) %>
+<%= f.input :weight, collection: (40..150) %>
+<%= f.input :birthdate, start_year: Time.now.year - 100,
+                        end_year: Time.now.year - 18,
+                        order: [:day, :month, :year] %>
+
+
+<%= f.input :summary %>
+<%= f.input :description %>
+<%= f.input :services, :as => :check_boxes, :collection => ["Fake Wedding", "Meet the parents", "Meet the friends", "Cuddling", "Dinner Date", "Park Walk"], :include_hidden => false %>
+<%= f.input :price %>
+<%= f.submit class: "btn btn-primary text-center" %>
+<% end %>
+
+
