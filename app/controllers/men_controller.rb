@@ -1,5 +1,5 @@
 class MenController < ApplicationController
-
+  skip_before_action :authenticate_user!, only: :index
   def index
     @men = Man.all
     if params[:search]
@@ -18,13 +18,10 @@ class MenController < ApplicationController
     #   @men = @men.where("price LIKE ?", "%#{params[:price]}")
     # end
 
-    if params[:services]
+    if params[:services] && params[:services] != "Services"
       @men = @men.select { |man| man.services.include?(params[:services]) }
     end
 
-    if params[:services] == "Services"
-      @men = Man.all
-    end
   end
 
   def new
@@ -59,7 +56,7 @@ class MenController < ApplicationController
   end
 
  private
-  
+
   def men_params
     params.require(:man).permit(:name, :height, :weight, :birthdate, :description, :price, services: [], photos: [])
   end
