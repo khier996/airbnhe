@@ -1,2 +1,43 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="banner padded text-center" style="background-image: url('');">
+    <h1>Men</h1>
+    <p>Explore your fantasies!</p>
+  </div>
+
+
+  <div class="container text-center padded">
+
+    <%= form_tag(men_path, :method => "get", id: "search-form") do %>
+    <%= select_tag(:services, options_for_select([['Services'],
+                   ['Fake Wedding'], ['Meet the parents'], ['Meet the friends'], ['Cuddling'], ['Dinner Date'], ['Park Walk']]))%>
+    <%= text_field_tag :search, nil, placeholder: "His name?" %>
+    <%= submit_tag "Search" %>
+
+    <% end %>
+  </div>
+
+
+  <div class="container text-center" >
+    <div class="row">
+      <% @suggestions.each do |man| %>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= man.url %>');">
+        <div class="card-description">
+          <%= man.name %>
+          <%= man.summary %>
+          <%= man.height %>
+          <%= man.weight %>
+          <%= man.price %>
+        </div>
+          <%= link_to('Meet', man_path(man), { class: "btn btn-primary" })%>
+      </div>
+      </div>
+      <% end %>
+    </div>
+    <p class="padded">
+    <%= link_to('Pimp a man', new_man_path, { class: "btn btn-primary" })%>
+    </p>
+  </div>
+
+
+
