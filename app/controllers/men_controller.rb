@@ -18,7 +18,6 @@ class MenController < ApplicationController
     #   @men = @men.where("price LIKE ?", "%#{params[:price]}")
     # end
 
-
     if params[:services]
       @men = @men.select { |man| man.services.include?(params[:services]) }
     end
@@ -40,6 +39,7 @@ class MenController < ApplicationController
 
   end
 
+
   def destroy
     man = Man.find(params[:id])
     man.destroy
@@ -48,8 +48,18 @@ class MenController < ApplicationController
   end
 
 
-  private
+  def edit
+    @man = Man.find(params[:id])
+  end
 
+  def update
+    @man = Man.find(params[:id])
+    @man.update(men_params)
+    redirect_to man_path(@man)
+  end
+
+ private
+  
   def men_params
     params.require(:man).permit(:name, :height, :weight, :birthdate, :description, :price, services: [], photos: [])
   end
