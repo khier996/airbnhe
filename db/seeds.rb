@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+man = Man.new(
+  name: "Bob",
+  height: 190,
+  weight: 80,
+  birthdate: Time.now,
+  description: "romantic hipster",
+  services: ["talk to parents", "cuddling"],
+  price: 120,
+  )
+man.save

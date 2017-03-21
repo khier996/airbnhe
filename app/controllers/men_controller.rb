@@ -3,6 +3,7 @@ class MenController < ApplicationController
   end
 
   def show
+     @man = Man.find(params[:id])
 
   end
 
