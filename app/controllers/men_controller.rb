@@ -33,16 +33,15 @@ class MenController < ApplicationController
   end
 
   def create
-    parameters = params.require(:man).permit(:name, :height, :weight, :description, :services, :price)
-    birthdate = Time.new(params[:man]["birthdate(1i)"], params[:man]["birthdate(2i)"], params[:man]["birthdate(3i)"])
-    services = params[:man][:services]
-    services.shift
-    @man = Man.new(parameters)
-    @man.birthdate = birthdate
-    @man.services = services
+    @man = Man.new(men_params)
     @man.save
 
     redirect_to man_path(@man)
 
   end
+
+  def men_params
+    params.require(:man).permit(:name, :height, :weight, :birthdate, :description, :price, services: [], photos: [])
+  end
+
 end
