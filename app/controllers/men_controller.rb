@@ -40,6 +40,16 @@ class MenController < ApplicationController
 
   end
 
+  def destroy
+    man = Man.find(params[:id])
+    man.destroy
+
+    redirect_to men_path(Man.all)
+  end
+
+
+  private
+
   def men_params
     params.require(:man).permit(:name, :height, :weight, :birthdate, :description, :price, services: [], photos: [])
   end
