@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 man = Man.new(
   name: "Bob",
   height: 190,
@@ -14,4 +15,8 @@ man = Man.new(
   services: ["talk to parents", "cuddling"],
   price: 120,
   )
-man.save
+
+man.save!
+man.photo_urls = [
+  "http://c8.alamy.com/comp/AY9AMH/man-on-harley-davidson-AY9AMH.jpg"
+]

@@ -1,28 +1,67 @@
-<h1>Men#show</h1>
-<p>Find me in app/views/men/show.html.erb</p>
+<h1 class="text-center"><%= @man.name%> </h1>
 
-<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(img);">
-  <div class="card-category">Popular</div>
-  <div class="card-description">
-    <h2>Summary</h2>
-
-    <p>Very cool stuff, useful and smart</p>
+  <div class="card">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-9">
+          <!-- insert <div class="card"> -->
+          <h3>Summary</h3>
+          <p><%= @man.description %></p>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+          <%= cl_image_tag @man.photos.first.path, height: 300, width: 300, class:"img-thumbnail" %>
+    <!--  <%= cl_image_tag @man.photos.first.path %> -->
+      </div>
+    </div>
   </div>
 
+
+ <!--  </div>
+  <%= cl_image_tag @man.photos.first.path %>
   <a class="card-link" href="#" ></a>
-</div>
+</div> -->
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-4">
-      <!-- insert <div class="card"> -->
+    <div class="col-xs-12 col-sm-6">
+    <!-- description -->
+      <h3> <i class="fa fa-quote-right"></i> Description: </h3>
+      <p><%= @man.description %></p>
+    <!-- specifications -->
+      <h3> <i class="fa fa-id-card"></i> Specifications: </h3>
+      <ul class="list-inline">
+        <li> <strong>Height:</strong> </li>
+        <li> <%= @man.height %> cm</li>
+      </ul>
+      <ul class="list-inline">
+        <li> <strong>Weight:</strong> </li>
+        <li> <%= @man.weight %> cm</li>
+      </ul>
+      <ul class="list-inline">
+        <li> <strong>Birthdate:</strong> </li>
+        <li> <%= @man.birthdate %></li>
+      </ul>
+      <ul class="list-inline">
+        <li> <strong>Services:</strong> </li>
+        <li> <% @man.services.each do |service| %>
+            <%= service %>,
+          <% end %></li>
+      </ul>
+      <ul class="list-inline">
+        <li> <strong>Price:</strong> </li>
+        <li> <%= @man.price %> USD</li>
+      </ul>
     </div>
-    <div class="col-xs-12 col-sm-4">
-      <!-- insert <div class="card"> -->
-    </div>
-    <div class="col-xs-12 col-sm-4">
-      <!-- insert <div class="card"> -->
+    <div class="col-xs-12 col-sm-6" style="background:lightgrey; height:400px;">
+    BOOKING FORM
     </div>
   </div>
 </div>
+</div>
 
+<div class="container actions">
+  <%= link_to 'Update', man_path(@man), {method: :patch, class: "btn btn-treehouse"} %>
+    <%= link_to 'Destroy', man_path(@man), method: :delete, class: "btn btn-danger" %>
+</div>
+
+</div>
