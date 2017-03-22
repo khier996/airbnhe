@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.3'
 
+gem "geocoder"
 gem 'omniauth-facebook'
 gem 'devise'
 gem 'nokogiri'
