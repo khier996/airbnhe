@@ -1,6 +1,6 @@
 <h1 class="text-center"><%= @man.name%> </h1>
 
-  <div class="card">
+  <div
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-9">
@@ -9,15 +9,17 @@
           <p><%= @man.description %></p>
         </div>
         <div class="col-xs-12 col-sm-3">
+        <% if @man.photos.any?%>
           <%= cl_image_tag @man.photos.first.path, height: 300, width: 300, class:"img-thumbnail" %>
-    <!--  <%= cl_image_tag @man.photos.first.path %> -->
+          <% end %>
+
       </div>
     </div>
   </div>
 
 
  <!--  </div>
-  <%= cl_image_tag @man.photos.first.path %>
+  <%#= cl_image_tag @man.photos.first.path %>
   <a class="card-link" href="#" ></a>
 </div> -->
 
