@@ -57,10 +57,10 @@
   background-color: #201D2D;
   color: white;
   font-size: 14px;
-  /* border: 2px solid #D23333; */
 }
 .navbar-wagon-button:hover {
   color: #CF8E03;
+  text-decoration: none;
 }
 
 /* Navbar search form */
@@ -129,6 +129,9 @@
 }
 
 .dropdown {
-  color: #CF8E03
+  color: white;
   }
 
+.dropdown:hover {
+  color: #CF8E03
+  }

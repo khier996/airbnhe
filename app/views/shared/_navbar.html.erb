@@ -19,7 +19,7 @@
     <% if user_signed_in? %>
 
       <!-- Create a man -->
-      <%= link_to new_man_path, class: "navbar-wagon-item navbar-wagon-button btn" do %>
+      <%= link_to new_man_path, class: "navbar-wagon-item navbar-wagon-button" do %>
         <div class="badge-container" id="mars">
           <i class="fa fa-mars" aria-hidden="true"></i>
           <span class="hidden"> Create a man </span>
@@ -43,7 +43,7 @@
           <%= cl_image_tag current_user.profile_photo.path, class: "avatar-bordered dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
         <% else %>
           <% avatar_url = current_user.facebook_picture_url || "http://placehold.it/30x30" %>
-          <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <%= image_tag avatar_url, class: "avatar-bordered dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
         <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
@@ -68,10 +68,10 @@
     <% else %>
 
       <!-- Login text link -->
-      <%= link_to "Login", new_user_session_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
+      <%= link_to "Log in", new_user_session_path, class: "navbar-wagon-item navbar-wagon-button" %>
 
       <!-- Button (call-to-action) -->
-      <%= link_to "Join AirBnHe", new_user_registration_path , class: "navbar-wagon-item navbar-wagon-button btn" %>
+      <%= link_to "Join AirBnHe", new_user_registration_path , class: "navbar-wagon-item navbar-wagon-button" %>
     <% end %>
 
   </div>
