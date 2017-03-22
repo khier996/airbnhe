@@ -1,3 +1,6 @@
+.btn {
+  margin-bottom: 20px;
+}
 
 // .btn-treehouse {
 //   color: white;
@@ -36,21 +39,3 @@
   color: white;
 }
 
-.btn-yours {
-  background: #4FA5DF;
-  color: white;
-  padding: 12px;
-  border-radius: 6px;
-  font-weight: lighter;
-  font-family: 'Proxima Nova', sans-serif;
-  box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.1);
-
-}
-
-.btn-yours:hover {
-  opacity: 1;
-  text-decoration: none;
-  background: #2280BF;
-  transition: background 0.3s ease;
-  cursor: pointer;
-}

@@ -8,5 +8,5 @@ class Man < ApplicationRecord
   validates :services, presence: true
   validates :price, presence: true
 
-  has_attachments :photos, maximum: 2
+  has_attachments :photos, maximum: 5
 end
