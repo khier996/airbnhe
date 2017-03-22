@@ -1,23 +1,26 @@
 <h1 class="text-center"><%= @man.name%> </h1>
 
-  <div class="card">
-    <div class="container">
+  <div
+    <div class="container ">
       <div class="row">
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-xs-12 col-sm-9 ">
           <!-- insert <div class="card"> -->
-          <h3>Summary</h3>
+          <h3 intro_summary>Summary </h3>
           <p><%= @man.description %></p>
         </div>
-        <div class="col-xs-12 col-sm-3">
-          <%= cl_image_tag @man.photos.first.path, height: 300, width: 300, class:"img-thumbnail" %>
-    <!--  <%= cl_image_tag @man.photos.first.path %> -->
+        <div class="col-xs-12 col-sm-3" active>
+        <% if @man.photos.any?%>
+          <%= render 'carousel'%>
+          <% end %>
+
       </div>
     </div>
   </div>
 
 
+
  <!--  </div>
-  <%= cl_image_tag @man.photos.first.path %>
+  <%#= cl_image_tag @man.photos.first.path %>
   <a class="card-link" href="#" ></a>
 </div> -->
 
@@ -59,10 +62,17 @@
   </div>
   </div>
 
+
   <div class="container actions">
     <%= link_to 'Update', edit_man_path(@man), { class: "btn btn-treehouse"} %>
       <%= link_to 'Destroy', man_path(@man), method: :delete, class: "btn btn-danger" %>
   </div>
+
+<div class="container block_butt">
+  <%= link_to 'Update', edit_man_path(@man), { class: "btn btn-treehouse"} %>
+    <%= link_to 'Destroy', man_path(@man), method: :delete, class: "btn btn-danger" %>
+</div>
+
 
 </div>
 

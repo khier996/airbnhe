@@ -7,22 +7,31 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
-    <!-- Search form -->
+<!--   Search form
     <form action="" class="navbar-wagon-search">
       <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
       <button type="submit" class="navbar-wagon-search-btn">
         <i class="fa fa-search"></i>
       </button>
-    </form>
+    </form> -->
 
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
 
+      <!-- Create a man -->
+      <%= link_to new_man_path, class: "navbar-wagon-item navbar-wagon-button btn" do %>
+        <div class="badge-container" id="mars">
+          <i class="fa fa-mars" aria-hidden="true"></i>
+          <span class="hidden"> Create a man </span>
+        </div>
+      <% end %>
+
       <!-- Notification -->
       <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
-        <div class="badge-container">
+        <div class="badge-container" id="envelope">
           <i class="fa fa-envelope-o"></i>
-          <div class="badge badge-blue">3</div>
+          <span class="hidden"> Check your messages </span>
+          <div class="badge badge-white"><!--3--></div>
         </div>
       <% end %>
 
@@ -59,11 +68,12 @@
     <% else %>
 
       <!-- Login text link -->
-      <%= link_to "Login", new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Login", new_user_session_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
+
+      <!-- Button (call-to-action) -->
+      <%= link_to "Join AirBnHe", new_user_registration_path , class: "navbar-wagon-item navbar-wagon-button btn" %>
     <% end %>
 
-    <!-- Button (call-to-action) -->
-    <%= link_to "Pimp a man", new_man_path , class: "navbar-wagon-item navbar-wagon-button btn" %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
