@@ -1,6 +1,7 @@
 <div class="new-man-form">
   <%= simple_form_for(@man) do |f| %>
   <%= f.input :name %>
+  <%= f.input :address %>
   <%= f.input :photos, as: :attachinary%>
   <%= f.input :height, collection: (100..250) %>
   <%= f.input :weight, collection: (40..150) %>
