@@ -1,7 +1,8 @@
 
   <div class="banner padded text-center" style="background-image:linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://scoopempire.com/wp-content/uploads/2014/01/sisayed-1024x515.png');">
     <h1>Lets bang!</h1>
-    <p>I will sink you with my pink torpedo.</p>
+    <br>
+    <h3>I will sink you with my pink torpedo.</h3>
   </div>
 
 
@@ -15,7 +16,8 @@
     <%= select_tag(:price, options_for_select([['Price'],
                    ['1000-2000', '1'], ['2000-3000', '2'], ['3000+', '3']]))%>
     <%= text_field_tag :search, nil, placeholder: "His name?" %>
-    <%= submit_tag "Search" %>
+
+    <%= submit_tag("Search", :class => "btn btn-primary")%>
 
     <% end %>
   </div>
@@ -25,13 +27,13 @@
     <div class="row">
       <% @suggestions.each do |man| %>
       <div class="col-xs-12 col-sm-6 col-md-4">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url'<%= man.photos.any? ? cl_image_path(man.photos.first.path) : '' %>');">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= man.photos.any? ? cl_image_path(man.photos.first.path) : '' %>');">
         <div class="card-description">
           <h2><%= man.name %></h2>
           <h3><%= man.summary %></h3>
           <p><%= man.height %> cm  <%= man.weight %> Kg  <%= man.price %> RMB</p>
         </div>
-          <%= link_to('Meet', man_path(man), { class: "btn btn-primary" })%>
+        <%= link_to("", man_path(man), class: "card-link") %>
       </div>
       </div>
       <% end %>
