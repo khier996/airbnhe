@@ -70,7 +70,7 @@ class MenController < ApplicationController
  private
 
   def men_params
-    params.require(:man).permit(:name, :height, :weight, :birthdate, :description, :price, services: [], photos: [])
+    params.require(:man).permit(:summary, :name, :height, :weight, :birthdate, :description, :price, services: [], photos: [])
   end
 
 end
