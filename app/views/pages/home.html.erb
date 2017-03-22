@@ -25,7 +25,7 @@
     <div class="row">
       <% @suggestions.each do |man| %>
       <div class="col-xs-12 col-sm-6 col-md-4">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= man.url %>');">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url'<%= man.photos.any? ? cl_image_path(man.photos.first.path) : '' %>');">
         <div class="card-description">
           <h2><%= man.name %></h2>
           <h3><%= man.summary %></h3>

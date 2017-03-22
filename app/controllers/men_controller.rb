@@ -39,9 +39,12 @@ class MenController < ApplicationController
 
   def create
     @man = Man.new(men_params)
-    @man.save
 
-    redirect_to man_path(@man)
+    if @man.save
+      redirect_to man_path(@man)
+    else
+      render :new
+    end
 
   end
 
@@ -67,7 +70,7 @@ class MenController < ApplicationController
  private
 
   def men_params
-    params.require(:man).permit(:name, :height, :weight, :birthdate, :description, :price, services: [], photos: [])
+    params.require(:man).permit(:summary, :name, :height, :weight, :birthdate, :description, :price, services: [], photos: [])
   end
 
 end
