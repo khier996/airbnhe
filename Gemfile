@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.3'
 
+gem 'geocoder'
 gem 'omniauth-facebook'
 gem 'devise'
 gem 'nokogiri'
@@ -28,9 +29,6 @@ gem 'coffee-rails'
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
-  gem 'cloudinary', '1.1.7'
-
-  gem 'attachinary', github: 'assembler/attachinary'
 
   gem 'pry-byebug'
   gem 'pry-rails'

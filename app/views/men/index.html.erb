@@ -1,31 +1,5 @@
-
-  <% if @men.present? %>
-    <div class="container text-center">
-      <h2>Select your man!</h2>
-    </div>
-    <div class="row">
-      <% @men.each do |man| %>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= man.url %>');">
-        <div class="card-description">
-          <h2><%= man.name %></h2>
-          <h3><%= man.summary %></h3>
-          <p><%= man.height %> cm  <%= man.weight %> Kg  <%= man.price %> RMB</p>
-        </div>
-          <%= link_to('Meet', man_path(man), { class: "btn btn-primary" })%>
-      </div>
-      </div>
-      <% end %>
-    </div>
-
-  <% else %>
-    <div class="container text-center" style="margin-top: 100px">
-     <h3 id="empty">Apologies- our harem doesn't contain <%= params[:search] %>.</h3>
-    </div>
-  <% end %>
-
   <div class="container">
-    <div class="container text-center padded">
+    <div class="container text-center" style="margin-top: 100px">
 
       <%= form_tag(men_path, :method => "get", id: "search-form") do %>
       <%= select_tag(:services, options_for_select([['Services'],
@@ -35,10 +9,40 @@
       <%= select_tag(:price, options_for_select([['Price'],
                    ['1000-2000', '1'], ['2000-3000', '2'], ['3000+', '3']]))%>
       <%= text_field_tag :search, nil, placeholder: "His name?" %>
-      <%= submit_tag "Search again" %>
+
+      <%= submit_tag("Search again", :class => "btn btn-primary")%>
 
       <% end %>
     </div>
+
+  <% if @men.present? %>
+    <div class="container text-center padded">
+      <h2>Select your man!</h2>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <% @men.each do |man| %>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= man.photos.any? ? cl_image_path(man.photos.first.path) : '' %>');">
+          <div class="card-description">
+            <h2><%= man.name %></h2>
+            <h3><%= man.summary %></h3>
+            <p><%= man.height %> cm  <%= man.weight %> Kg  <%= man.price %> RMB</p>
+          </div>
+          <%= link_to("", man_path(man), class: "card-link") %>
+        </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+  <% else %>
+    <div class="container text-center" style="margin-top: 100px">
+     <h3 id="empty">Apologies- our harem doesn't contain <%= params[:search] %>.</h3>
+    </div>
+  <% end %>
+
   </div>
 
 
