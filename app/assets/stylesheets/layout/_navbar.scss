@@ -1,7 +1,7 @@
 /* Main class */
 .navbar-wagon {
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: white;
+  background: #201D2D;
   transition: all 0.3s ease;
   display: flex;
   height: 70px;
@@ -21,7 +21,7 @@
 
 /* Navbar logo */
 .navbar-wagon-brand img {
-  width: 50px;
+  width: 100px;
 }
 
 /* Navbar right section (with form, links, button) */
@@ -54,15 +54,13 @@
   padding: 0 20px;
   border-radius: 20em;
   line-height: 40px;
-  background-color: #D23333;
+  background-color: #201D2D;
   color: white;
   font-size: 14px;
-  border: 2px solid #D23333;
+  /* border: 2px solid #D23333; */
 }
 .navbar-wagon-button:hover {
-  color: white;
-  background: #D23333;
-  border-color: #ac2626;
+  color: #CF8E03;
 }
 
 /* Navbar search form */
@@ -108,14 +106,14 @@
 .navbar-wagon-dropdown-menu li > a {
   transition: color 0.3s ease;
   font-weight: lighter !important;
-  color: #999999 !important;
+  color: #201D2D!important;
   font-size: 15px !important;
   line-height: 22px !important;
   padding: 10px 20px;
 }
 .navbar-wagon-dropdown-menu li > a:hover {
   background: transparent !important;
-  color: black !important;
+  color: #CF8E03 !important;
 }
 .navbar-wagon-dropdown-menu:before {
   content: ' ';
@@ -129,4 +127,8 @@
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
 }
+
+.dropdown {
+  color: #CF8E03
+  }
 
