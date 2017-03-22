@@ -6,6 +6,7 @@ class MenController < ApplicationController
 
   def show
     @man = Man.find(params[:id])
+    @man_coordinates = [{ lat: @man.latitude, lng: @man.longitude }]
   end
 
   def index
@@ -70,7 +71,7 @@ class MenController < ApplicationController
  private
 
   def men_params
-    params.require(:man).permit(:summary, :name, :height, :weight, :birthdate, :description, :price, services: [], photos: [])
+    params.require(:man).permit(:summary, :name, :height, :weight, :birthdate, :address, :description, :price, services: [], photos: [])
   end
 
 end
