@@ -3,7 +3,13 @@
  * (margin/padding adjustments)
  * ------------------------------------- */
 .banner {
+  height: 350px;
   background-size: cover;
   background-position: center;
   color: white;
+  text-align: center;
+}
+
+#search {
+  margin-top: 30px;
 }
