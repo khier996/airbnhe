@@ -1,0 +1,35 @@
+.new-man-form {
+  width: 70%;
+  text-align: center;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.new-man-form-banner {
+  width: 100%;
+  z-index: 1;
+}
+
+.new-man-form-upload-pic {
+  position: relative;
+  left: 50%;
+}
+
+.new-man-form-title {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  z-index: 2;
+  font-size: 9rem;
+  text-shadow: 1px 1px grey;
+}
+
+@media screen and (max-width: 800px) {
+  .new-man-form-title {
+    font-size: 3rem;
+    top: 10%
+  }
+}
