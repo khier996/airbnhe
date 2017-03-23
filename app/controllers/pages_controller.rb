@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   def home
     shuffle = Man.all.shuffle
     @suggestions = shuffle[0..5]
+    @men_coordinates = @suggestions.map { |man| {lat: man.latitude, lng: man.longitude} }
   end
 
   def dashboard
@@ -19,9 +20,14 @@ class PagesController < ApplicationController
     else
       @bookings = current_user.bookings
     end
+
+    @bookings = current_user.bookings
+    @requests = current_user.requests
+    @current_user = current_user
   end
 
   def about
+
   end
 
 end
