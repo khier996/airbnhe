@@ -1,0 +1,46 @@
+<!-- see all the men that have been booked by the user -->
+<div class="user-booking-overview">
+  <h1>All the men I booked</h1>
+  <br>
+  <!-- Status check dropdown plus according action -->
+  <!-- status check method-->
+  <p>You booked <%= @bookings %> men </p>
+  <div class="men-dropdown">
+  </div>
+  <!-- Book more men -->
+  <div>
+    <p class="text-center padded">
+      <%= link_to('Book another man', men_path, { class: "btn btn-primary" })%>
+    </p>
+  </div>
+  <% else %>
+  <!-- No man booked yet button (call-to-action)-->
+  You did not book any man
+  <%= link_to "Please make a booking", men_path, class: "navbar-wagon-item navbar-wagon-button" %>
+</div>
+
+  <ul>
+    <li><a href="" id="all">All</a></li>
+    <li><a href="" id="confirmed">Confirmed</a></li>
+    <li><a href="" id="pending">Pending</a></li>
+    <li><a href="" id="rejected">Rejected</a></li>
+  </ul>
+
+
+  <!-- Man card -->
+  <div class="container" >
+    <div class="row">
+      <% @bookings.each do |booking| %>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+      <div class="card <%= booking.status %>" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= booking.man.photos.any? ? cl_image_path(booking.man.photos.first.path) : '' %>');">
+        <div class="card-description">
+          <h2><%= booking.man.name %></h2>
+          <h3>Start time: Price:<%= booking.man.price %>RMB</h3>
+          <p><%= booking.man.address%></p>
+        </div>
+        <%= link_to("", man_path(booking.man), class: "card-link") %>
+      </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
