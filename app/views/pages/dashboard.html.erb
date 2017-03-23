@@ -44,3 +44,45 @@
       <% end %>
     </div>
   </div>
+
+
+
+
+
+
+
+<br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+<% @requests.each do |request| %>
+  <% man = Man.find(request.man_id) %>
+  <%= man.name %>
+  <%= request.start_time %>
+  <%= request.end_time %>
+  <%= request.status %>
+
+  <% if request.status == "pending" %>
+    <%= simple_form_for [man, request]  do |f| %>
+      <%= f.hidden_field :action, value: "confirm" %>
+      <%= f.submit "Accept", class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+
+  <% if request.status == "confirmed" %>
+    <%= simple_form_for [man, request]  do |f| %>
+      <%= f.hidden_field :action, value: "cancel" %>
+      <%= f.submit "Cancel", class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+
+
+
+<% end %>

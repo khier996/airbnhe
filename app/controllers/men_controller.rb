@@ -11,6 +11,8 @@ class MenController < ApplicationController
 
   def index
     @men = Man.all
+    @men_coordinates = @men.map { |man| {lat: man.latitude, lng: man.longitude} }
+
     if params[:search]
       @men = @men.where("name LIKE ?", "%#{params[:search]}%").order("created_at DESC")
     end
@@ -40,8 +42,11 @@ class MenController < ApplicationController
 
   def create
     @man = Man.new(men_params)
+    @man.user_id = current_user[:id]
 
     if @man.save
+      ManMailer.creation_confirmation(@man).deliver_now
+
       redirect_to man_path(@man)
     else
       render :new
