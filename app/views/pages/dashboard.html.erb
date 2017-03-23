@@ -60,29 +60,71 @@
 
 
 
+<div class="container text-center">
 
 
-<% @requests.each do |request| %>
-  <% man = Man.find(request.man_id) %>
-  <%= man.name %>
-  <%= request.start_time %>
-  <%= request.end_time %>
-  <%= request.status %>
+  <% @requests.each do |request| %>
+    <% man = Man.find(request.man_id) %>
 
-  <% if request.status == "pending" %>
-    <%= simple_form_for [man, request]  do |f| %>
-      <%= f.hidden_field :action, value: "confirm" %>
-      <%= f.submit "Accept", class: "btn btn-primary" %>
-    <% end %>
+    <div class="request-row">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <img src="<%= cl_image_path man.photos.first.path %>" class="request-img">
+          </div>
+
+          <div class="col-md-2 vertical-center">
+            <p class="request-name"> <%= man.name %> </p>
+          </div>
+
+          <div class="col-md-2">
+            <p> Start time: <%= request.start_time %> </p>
+            <p> End time: <%= request.end_time %> </p>
+          </div>
+
+          <div class="col-md-2">
+            <%= request.status %>
+          </div>
+
+          <div class="col-md-2">
+            <% if request.status == "pending" %>
+            <%= simple_form_for [man, request]  do |f| %>
+              <%= f.hidden_field :action, value: "confirm" %>
+              <%= f.submit "Accept", class: "btn btn-primary" %>
+            <% end %>
+
+            <%= simple_form_for [man, request]  do |f| %>
+              <%= f.hidden_field :action, value: "cancel" %>
+              <%= f.submit "Reject", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+
+          <% if request.status == "confirmed" %>
+            <%= simple_form_for [man, request]  do |f| %>
+              <%= f.hidden_field :action, value: "cancel" %>
+              <%= f.submit "Cancel", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <div>
+
+      </div>
+
+
+
+
+
+    </div>
+
+
   <% end %>
+</div>
 
-  <% if request.status == "confirmed" %>
-    <%= simple_form_for [man, request]  do |f| %>
-      <%= f.hidden_field :action, value: "cancel" %>
-      <%= f.submit "Cancel", class: "btn btn-primary" %>
-    <% end %>
-  <% end %>
-
-
-
-<% end %>
