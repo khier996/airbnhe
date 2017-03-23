@@ -4,4 +4,8 @@ class PagesController < ApplicationController
     shuffle = Man.all.shuffle
     @suggestions = shuffle[0..5]
   end
+
+  def about
+
+  end
 end
