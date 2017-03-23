@@ -42,12 +42,13 @@
   color: white;
   font-size: 16px;
   text-decoration: none;
+  padding: 10px;
 
 }
 
 .navbar-about:hover {
   color: #da552f;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 /* Navbar standard link */
 .navbar-wagon-link {
