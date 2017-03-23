@@ -6,7 +6,19 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @bookings = current_user.bookings
+    @current_choice = params[:bookings] || "all"
+    if params[:bookings] == "confirmed"
+      @bookings = current_user.bookings.where(status: "confirmed")
+
+    elsif params[:bookings] == "pending"
+      @bookings = current_user.bookings.where(status: "pending")
+
+    elsif params[:bookings] == "rejected"
+      @bookings = current_user.bookings.where(status: "rejected")
+
+    else
+      @bookings = current_user.bookings
+    end
   end
 
   def about
