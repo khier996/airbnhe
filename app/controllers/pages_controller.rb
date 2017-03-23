@@ -5,4 +5,12 @@ class PagesController < ApplicationController
     @suggestions = shuffle[0..5]
     @men_coordinates = @suggestions.map { |man| {lat: man.latitude, lng: man.longitude} }
   end
+
+  def dashboard
+    @bookings = current_user.bookings
+  end
+
+  def about
+  end
+
 end

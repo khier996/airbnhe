@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :men
 
   has_attachment :profile_photo
+  has_many :bookings
 
   after_create :send_welcome_email
 
