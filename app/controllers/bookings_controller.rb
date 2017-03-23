@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+
   def create
     @man  = Man.find(params[:man_id])
     @booking = Booking.new(booking_params)
@@ -19,5 +20,21 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:start_time, :end_time)
+
+  def update
+    booking = Booking.find(params[:id])
+    action = params[:booking][:action]
+
+    if action == "confirm"
+      booking.status = "confirmed"
+      booking.save
+
+      redirect_to dashboard_path
+    elsif action == "cancel"
+      booking.status = "Rejected"
+      booking.save
+
+      redirect_to dashboard_path
+    end
   end
 end
