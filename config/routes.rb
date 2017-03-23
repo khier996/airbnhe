@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-
-  get 'men/index'
-
   root to: 'pages#home'
 
-  resources :men
+  resources :men do
+    resources :bookings, only: [:create, :update]
+  end
 
   mount Attachinary::Engine => "/attachinary"
 

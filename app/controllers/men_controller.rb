@@ -7,6 +7,7 @@ class MenController < ApplicationController
   def show
     @man = Man.find(params[:id])
     @man_coordinates = [{ lat: @man.latitude, lng: @man.longitude }]
+    @booking = Booking.new
   end
 
   def index
@@ -39,13 +40,13 @@ class MenController < ApplicationController
   end
 
   def create
-    @man = Man.new(men_params)
+  @man = Man.new(men_params)
 
-    if @man.save
-      redirect_to man_path(@man)
-    else
-      render :new
-    end
+  if @man.save
+  redirect_to man_path(@man)
+  else
+  render :new
+  end
 
   end
 
