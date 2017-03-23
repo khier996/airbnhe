@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
 
-  get 'men/index'
+  devise_for :users,
+    controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   root to: 'pages#home'
 
   resources :men
 
+  resources :users, only: [:show]
+
   mount Attachinary::Engine => "/attachinary"
-
-  devise_for :users,
-    controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

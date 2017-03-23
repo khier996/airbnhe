@@ -1,4 +1,8 @@
 class Man < ApplicationRecord
+  belongs_to :user
+
+  after_create :send_confirmation_email
+
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
@@ -12,4 +16,9 @@ class Man < ApplicationRecord
   validates :price, presence: true
 
   has_attachments :photos, maximum: 5
+
+  private
+  def send_confirmation_email
+    ManMailer.creation_confirmation(self).deliver_now
+  end
 end

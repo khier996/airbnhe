@@ -5,7 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
+  has_many :men
+
   has_attachment :profile_photo
+
+  after_create :send_welcome_email
 
 
   def self.find_for_facebook_oauth(auth)
@@ -27,6 +31,12 @@ class User < ApplicationRecord
     end
 
     return user
+  end
+
+  private
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
   end
 
 end
