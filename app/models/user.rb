@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook]
 
   has_attachment :profile_photo
+  has_many :bookings
 
 
   def self.find_for_facebook_oauth(auth)

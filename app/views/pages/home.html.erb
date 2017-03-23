@@ -1,11 +1,12 @@
 
+  <!-- Picture home page -->
   <div class="banner padded text-center" style="background-image:linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://scoopempire.com/wp-content/uploads/2014/01/sisayed-1024x515.png');">
     <h1>Lets bang!</h1>
     <br>
     <h3>I will sink you with my pink torpedo.</h3>
   </div>
 
-
+  <!-- Search bar -->
   <div class="container text-center" style="margin-bottom: 50px; margin-top: 50px">
 
     <%= form_tag(men_path, :method => "get", id: "search-form") do %>
@@ -22,7 +23,7 @@
     <% end %>
   </div>
 
-
+  <!-- Man card for suggestions-->
   <div class="container" >
     <div class="row">
       <% @suggestions.each do |man| %>
