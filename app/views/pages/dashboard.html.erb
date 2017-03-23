@@ -51,7 +51,43 @@
 
 
 
-<br><br><br><br><br><br><br>
+<br><br><br>
+
+<!-- My men that I created -->
+
+<div class="container text-center padded">
+
+    <% if @men.present? %>
+    <div class="container text-center padded">
+      <h2>Here are your Boys!</h2>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <% @men.each do |man| %>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= man.photos.any? ? cl_image_path(man.photos.first.path) : '' %>');">
+          <div class="card-description">
+            <h2><%= man.name %></h2>
+            <h3><%= man.summary %></h3>
+            <p><%= man.height %> cm  <%= man.weight %> Kg  <%= man.price %> RMB</p>
+          </div>
+          <%= link_to("", man_path(man), class: "card-link") %>
+        </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+  <% else %>
+    <div class="container text-center" style="margin-top: 100px">
+     <h3 id="empty">You don't seem to own any Hunks...</h3>
+    </div>
+  <% end %>
+</div>
+
+
+<br><br><br>
 
 
 

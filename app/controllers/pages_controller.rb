@@ -10,6 +10,7 @@ class PagesController < ApplicationController
     @bookings = current_user.bookings
     @requests = current_user.requests
     @current_user = current_user
+    @men = current_user.men
   end
 
   def about
