@@ -1,0 +1,7 @@
+<div class="new-booking-form">
+  <%= simple_form_for([@man, @booking]) do |f| %>
+  <%= f.input :start_time %>
+  <%= f.input :end_time %>
+  <%= f.submit class: "btn btn-primary text-center" %>
+  <% end %>
+</div>
