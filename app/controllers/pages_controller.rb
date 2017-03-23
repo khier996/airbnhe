@@ -4,4 +4,13 @@ class PagesController < ApplicationController
     shuffle = Man.all.shuffle
     @suggestions = shuffle[0..5]
   end
+
+  def dashboard
+    @bookings = current_user.bookings
+  end
+
+  def about
+
+  end
+
 end

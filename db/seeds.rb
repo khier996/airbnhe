@@ -24,4 +24,19 @@
 # --> Antoine's seeds
 
 
+booking = Booking.new(
+  user_id: 6,
+  man_id: 5,
+  status: "confirmed",
+  )
 
+booking.save!
+
+
+booking = Booking.new(
+  user_id: 6,
+  man_id: 1,
+  status: "pending",
+  )
+
+booking.save!
