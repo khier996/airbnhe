@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :users, only:[:show]
-  resources :men
+
+  resources :men do
+    resources :bookings, only: [:create, :update]
+  end
 
 
 

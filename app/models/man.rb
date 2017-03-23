@@ -1,4 +1,5 @@
 class Man < ApplicationRecord
+  has_many :bookings
   belongs_to :user
 
   after_create :send_confirmation_email
