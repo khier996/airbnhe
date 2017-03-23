@@ -4,6 +4,7 @@
     <%= image_tag "logo.png" %>
   <% end %>
 
+
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
@@ -17,6 +18,12 @@
 
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
+
+      <%= link_to about_path do %>
+        <div class="navbar-about">
+          <span class="navbar-about" > About </span>
+        </div>
+      <% end %>
 
       <!-- Create a man -->
       <%= link_to new_man_path, class: "navbar-wagon-item navbar-wagon-button" do %>
