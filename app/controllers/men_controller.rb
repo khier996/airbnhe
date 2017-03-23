@@ -7,6 +7,7 @@ class MenController < ApplicationController
   def show
     @man = Man.find(params[:id])
     @man_coordinates = [{ lat: @man.latitude, lng: @man.longitude }]
+    raise
   end
 
   def index
