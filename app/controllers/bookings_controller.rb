@@ -12,7 +12,6 @@ class BookingsController < ApplicationController
     else
       render "men/show"
     end
-
   end
 
   def update
@@ -20,6 +19,7 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:start_time, :end_time)
+  end
 
   def update
     booking = Booking.find(params[:id])
