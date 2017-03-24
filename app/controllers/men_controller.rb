@@ -55,8 +55,6 @@ class MenController < ApplicationController
     @man.user_id = current_user[:id]
 
     if @man.save
-      ManMailer.creation_confirmation(@man).deliver_now
-
       redirect_to man_path(@man)
     else
       render :new
