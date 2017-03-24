@@ -43,14 +43,6 @@ class MenController < ApplicationController
 
   def create
 
-  @man = Man.new(men_params)
-
-  if @man.save
-  redirect_to man_path(@man)
-  else
-  render :new
-  end
-
     @man = Man.new(men_params)
     @man.user_id = current_user[:id]
 
