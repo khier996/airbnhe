@@ -1,9 +1,8 @@
 .request-row {
-  width: 90%;
+  width: 80%;
   background-color: #efeae1;
   border-radius: 5px;
   border-shadow: 3px 3px 5px 5px grey;
-
 }
 
 .requests-container {
@@ -36,6 +35,57 @@
   margin-right: 20px;
 }
 
+
+
+.dashboard-container {
+  width: 100%;
+  margin-top: 30px;
+}
+
+
+.dashboard-profile {
+  padding-top: 30px;
+  height: 90vh;
+  width: 100%;
+  margin-left: 10%;
+  box-shadow: 1px 1px 1px 1px lightgrey;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.dashboard-profile-info {
+  text-align: center;
+}
+
+.dashboard-profile-img {
+  width: 200px;
+  border-radius: 50%;
+}
+
+.dashboard-navbar {
+  margin-left: 5%;
+  margin-right: 20px;
+  height: 100vh;
+  width: 90%;
+  box-shadow: 1px 1px 1px 1px lightgrey;
+  border-radius: 5px;
+  overflow: scroll;
+}
+
+@media screen and (max-width: 991px) {
+  .dashboard-row {
+    width: 100%;
+    margin-left: 5%;
+  }
+
+  .request-row {
+    width: 100%;
+  }
+
+  .dashboard-navbar {
+    margin-left: 0px;
+  }
+}
 
 
 

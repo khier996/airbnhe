@@ -1,4 +1,116 @@
 <!-- see all the men that have been booked by the user -->
+
+<div class="dashboard-container">
+  <div class="row dashboard-row">
+    <div class="hidden-sm hidden-xs col-md-3">
+      <div class="dashboard-profile">
+        <%= cl_image_tag @current_user.profile_photo.path, height: 300, width: 300, crop: :fill, radius: 5, angle:0, effect: "sepia", class: "dashboard-profile-img" %>
+        <div class="dashboard-profile-info">
+          <h1>Profile</h1>
+          <p><%= @current_user.first_name %> <%= @current_user.last_name %></p>
+
+          <p>Gender: <%= @current_user.gender %></p>
+          <p>Email: <%= @current_user.email %></p>
+       </div>
+
+        <p></p>
+
+        <p class="text-center padded">
+        <%= link_to('Edit profile', edit_user_registration_path, { class: "btn btn-primary" })%>
+        <%= link_to('Home', root_path, { class: "btn btn-primary" })%>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-md-9">
+      <div class="dashboard-navbar">
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Men you booked</a></li>
+        <li role="presentation"><a href="#your-men" aria-controls="profile" role="tab" data-toggle="tab">Your men</a></li>
+        <li role="presentation"><a href="#requests" aria-controls="messages" role="tab" data-toggle="tab">Requests for your men</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+          <div class="container text-center">
+            <% @requests.each do |request| %>
+              <% man = Man.find(request.man_id) %>
+
+              <div class="request-row">
+
+                <div class="requests-container">
+                  <div class=>
+                    <img src="<%= cl_image_path man.photos.first.path %>" class="request-img">
+                    <p class="request-name"> <%= man.name %> </p>
+                  </div>
+
+                  <div class="">
+                    <p> Start time: <%= request.start_time %> </p>
+                    <p> End time: <%= request.end_time %> </p>
+                    <p> Status: <%= request.status %> </p>
+                  </div>
+
+                  <div style="width: 200px">
+                    <% if request.status == "pending" %>
+                    <%= simple_form_for [man, request]  do |f| %>
+                      <%= f.hidden_field :action, value: "confirm" %>
+                      <%= f.submit "Accept", class: "btn btn-primary btn-float-left" %>
+                    <% end %>
+
+                    <%= simple_form_for [man, request]  do |f| %>
+                      <%= f.hidden_field :action, value: "cancel" %>
+                      <%= f.submit "Reject", class: "btn btn-primary btn-float-left" %>
+                    <% end %>
+                  <% end %>
+
+                  <% if request.status == "confirmed" %>
+                    <%= simple_form_for [man, request]  do |f| %>
+                      <%= f.hidden_field :action, value: "cancel" %>
+                      <%= f.submit "Cancel", class: "btn btn-primary btn-float-left" %>
+                    <% end %>
+                  <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+
+        <!-- Patricia's code below -->
+        <div role="tabpanel" class="tab-pane" id="your-men">Put your code here</div>
+        <div role="tabpanel" class="tab-pane" id="requests">Put your code here</div>
+
+      </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="user-booking-overview">
   <!-- Status check dropdown plus according action -->
   <!-- status check method-->

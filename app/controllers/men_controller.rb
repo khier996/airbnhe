@@ -51,7 +51,6 @@ class MenController < ApplicationController
   end
 
   def create
-
     @man = Man.new(men_params)
     @man.user_id = current_user[:id]
 
@@ -62,8 +61,6 @@ class MenController < ApplicationController
     else
       render :new
     end
-
-
   end
 
 
