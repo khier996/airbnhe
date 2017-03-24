@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   has_many :requests, through: :men, source: :bookings
 
-  after_create :send_welcome_email
+  #after_create :send_welcome_email
 
 
   def self.find_for_facebook_oauth(auth)
