@@ -6,7 +6,9 @@
 //= require jquery-fileupload/basic
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
-//= require_tree .
+//= require_tree
+//= require moment
+//= require bootstrap-datetimepicker
 
 $(document).ready(function() {
   $('.owl-carousel').owlCarousel({
@@ -29,5 +31,10 @@ $(document).ready(function() {
     }
 });
 });
+
+$(function () {
+$('.form_datetime').datetimepicker({ format: 'YYYY-MM-DD' });
+});
+
 
 
