@@ -1,9 +1,24 @@
+.wrapper-dashboard {
+  background-color: #FAFAFA;
+  padding: 20px;
+}
+
+
+
+.tabs a {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+
 .request-row {
   width: 90%;
   background-color: #efeae1;
   border-radius: 5px;
   border-shadow: 3px 3px 5px 5px grey;
-
+  margin: 30px;
 }
 
 .requests-container {
@@ -11,6 +26,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
+  background-color: white;
 }
 
 .relative {
@@ -19,8 +35,7 @@
 
 
 .request-img {
-  width: 200px;
-  height: 200px;
+  width: 320px;
   margin-top: 20px;
 }
 
@@ -34,9 +49,19 @@
   display: inline-block;
   float: left;
   margin-right: 20px;
+  background: white;
 }
 
+.action {
+  display: inline-block;
+  float: left;
+  margin-right: 20px;
+  color: #CF8E03;
 
+  a {
+      color: #CF8E03;
+  }
+}
 
 
 
