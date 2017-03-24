@@ -1,5 +1,4 @@
 class BookingsController < ApplicationController
-
   def create
     @man  = Man.find(params[:man_id])
     @booking = Booking.new(booking_params)
@@ -12,9 +11,14 @@ class BookingsController < ApplicationController
     else
       render "men/show"
     end
-
   end
 
+  def update
+  end
+
+  def booking_params
+    params.require(:booking).permit(:start_time, :end_time)
+  end
 
   def update
     booking = Booking.find(params[:id])
@@ -31,9 +35,7 @@ class BookingsController < ApplicationController
 
       redirect_to dashboard_path
     end
-
   end
-
 
   def booking_params
     params.require(:booking).permit(:start_time, :end_time)
