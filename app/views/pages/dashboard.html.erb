@@ -1,12 +1,10 @@
 <!-- see all the men that have been booked by the user -->
 <div class="user-booking-overview">
-  <h1>Bookings</h1>
-  <br>
   <!-- Status check dropdown plus according action -->
   <!-- status check method-->
   <!-- <div class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <%= @current_choice.capitalize %>
+      <%= @current_choice %>
         <span class="text-right caret"></span>
     </button>
     <ul class="dropdown-menu">
@@ -17,15 +15,14 @@
     </ul>
   </div> -->
 
+  <div class="tabs">
+    <a id="all" class="tab">All</a>
+    <a id="confirmed" class="tab">Confirmed</a>
+    <a id="pending" class="tab">Pending</a>
+    <a id="rejected" class="tab">Rejected</a>
+  </div>
 
-    <div class="tabs">
-      <a id="all" class="tab">All</a>
-      <a id="confirmed" class="tab">Confirmed</a>
-      <a id="pending" class="tab">Pending</a>
-      <a id="rejected" class="tab">Rejected</a>
-    </div>
-
-    <!-- Man card -->
+  <!-- Man card -->
   <div class="container" >
     <div class="row">
       <% @bookings.each do |booking| %>
@@ -43,7 +40,6 @@
       <% end %>
     </div>
   </div>
-
 </div>
   <!-- Book more men -->
   <div>
@@ -57,21 +53,8 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-<br><br><br>
-
 <!-- My men that I created -->
-
 <div class="container text-center padded">
-
     <% if @men.present? %>
     <div class="container text-center padded">
       <h2>Here are your Boys!</h2>
@@ -101,40 +84,52 @@
   <% end %>
 </div>
 
+<!-- Man assets -->
+<div class="container text-center">
+  <% @requests.each do |request| %>
+    <% man = Man.find(request.man_id) %>
 
-<br><br><br>
+    <div class="request-row">
+      <div class="requests-container">
+        <div class=>
+          <img src="<%= cl_image_path man.photos.first.path %>" class="request-img">
+          <p class="request-name"> <%= man.name %> </p>
+        </div>
 
+        <div class="">
+          <p> Start time: <%= request.start_time %> </p>
+          <p> End time: <%= request.end_time %> </p>
+          <p> Status: <%= request.status %> </p>
+        </div>
 
+        <div style="width: 200px">
+          <% if request.status == "pending" %>
+          <%= simple_form_for [man, request]  do |f| %>
+            <%= f.hidden_field :action, value: "confirm" %>
+            <%= f.submit "Accept", class: "btn btn-primary btn-float-left" %>
+          <% end %>
 
+          <%= simple_form_for [man, request]  do |f| %>
+            <%= f.hidden_field :action, value: "cancel" %>
+            <%= f.submit "Reject", class: "btn btn-primary btn-float-left" %>
+          <% end %>
+        <% end %>
 
+        <% if request.status == "confirmed" %>
+          <%= simple_form_for [man, request]  do |f| %>
+            <%= f.hidden_field :action, value: "cancel" %>
+            <%= f.submit "Cancel", class: "btn btn-primary btn-float-left" %>
+          <% end %>
+        <% end %>
 
-
-
-
-
-
-<% @requests.each do |request| %>
-  <% man = Man.find(request.man_id) %>
-  <%= man.name %>
-  <%= request.start_time %>
-  <%= request.end_time %>
-  <%= request.status %>
-
-  <% if request.status == "pending" %>
-    <%= simple_form_for [man, request]  do |f| %>
-      <%= f.hidden_field :action, value: "confirm" %>
-      <%= f.submit "Accept", class: "btn btn-primary" %>
-    <% end %>
+        </div>
+      </div>
+    </div>
   <% end %>
-
-  <% if request.status == "confirmed" %>
-    <%= simple_form_for [man, request]  do |f| %>
-      <%= f.hidden_field :action, value: "cancel" %>
-      <%= f.submit "Cancel", class: "btn btn-primary" %>
-    <% end %>
-  <% end %>
+</div>
 
 
 
-<% end %>
+
+
 

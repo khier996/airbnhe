@@ -32,3 +32,10 @@
 .carousel-control.right {
   background-image: none;
 }
+
+.form-wrapper {border-radius: 4px;
+    background: rgba(0,0,0,0.6);
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#99000000', endColorstr='#99000000');
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    z-index: 1;
+}
