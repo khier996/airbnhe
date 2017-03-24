@@ -1,0 +1,43 @@
+.request-row {
+  width: 90%;
+  background-color: #efeae1;
+  border-radius: 5px;
+  border-shadow: 3px 3px 5px 5px grey;
+
+}
+
+.requests-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.relative {
+  position: relative;
+}
+
+
+.request-img {
+  width: 200px;
+  height: 200px;
+  margin-top: 20px;
+}
+
+
+.request-name {
+  font-size: 3rem;
+}
+
+
+.btn-float-left {
+  display: inline-block;
+  float: left;
+  margin-right: 20px;
+}
+
+
+
+
+
+
