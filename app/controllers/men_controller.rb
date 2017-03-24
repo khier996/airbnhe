@@ -18,22 +18,31 @@ class MenController < ApplicationController
       @men = @men.where("name LIKE ?", "%#{params[:search]}%").order("created_at DESC")
     end
 
-    # if params[:city]
-    #   @men = @men.where("city LIKE ?", "%#{params[:city]}")
-    # end
+    if params[:search_address]
+      @men = @men.where("address LIKE ?", "%#{params[:search_address]}")
+    end
 
-    # if params[:height]
-    #   @men = @men.where("height LIKE ?", "%#{params[:height]}")
-    # end
+    if params[:height] != ""
+      query = params[:height]
+      min = query.split("-").first
+      max = query.split("-")[1]
 
-    # if params[:price]
-    #   @men = @men.where("price LIKE ?", "%#{params[:price]}")
-    # end
+      @men = @men.where("height > ? AND height < ?", min, max)
+
+    end
+
+    if params[:price] != ""
+      query = params[:price]
+      min = query.split("-").first
+      max = query.split("-")[1]
+
+      @men = @men.where("price > ? AND price < ?", min, max)
+
+    end
 
     if params[:services] && params[:services] != "Services"
       @men = @men.select { |man| man.services.include?(params[:services]) }
     end
-
 
   end
 
@@ -42,7 +51,6 @@ class MenController < ApplicationController
   end
 
   def create
-
     @man = Man.new(men_params)
     @man.user_id = current_user[:id]
 
@@ -53,8 +61,6 @@ class MenController < ApplicationController
     else
       render :new
     end
-
-
   end
 
 

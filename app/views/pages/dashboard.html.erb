@@ -1,118 +1,182 @@
-<!-- Bookings made by an user  -->
-<div class="wrapper-dashboard">
-  <div class="container">
-    <div class="tabs nav nav-tabs booking-tabs text-center">
-      <span class="active">
-        <a href="#all" class="tab" data-toggle="tab">All</a>
-      </span>
-      <span>
-        <a href="#confirmed" class="tab" data-toggle="tab">Confirmed</a>
-      </span>
-      <span>
-        <a href="#pending" class="tab" data-toggle="tab">Pending</a>
-      </span>
-      <span>
-        <a href="#rejected" class="tab" data-toggle="tab">Rejected</a>
-      </span>
-    </span>
 
-    <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active" id="all">
-        <%= render "bookings/index", bookings: @bookings %>
-      </div>
+<!-- see all the men that have been booked by the user -->
 
-      <div role="tabpanel" class="tab-pane" id="confirmed">
-        <%= render "bookings/index", bookings: @bookings.where(status: "confirmed") %>
-      </div>
+<div class="dashboard-container">
+  <div class="row dashboard-row">
+    <div class="hidden-sm hidden-xs col-md-3">
+      <div class="dashboard-profile">
+        <% if @current_user.profile_photo %>
+          <%= cl_image_tag @current_user.profile_photo.path, height: 300, width: 300, crop: :fill, radius: 5, angle:0, effect: "sepia", class: "dashboard-profile-img" %>
+        <% end %>
+        <% if @current_user[:facebook_picture_url] %>
+          <img src="<%= @current_user[:facebook_picture_url] %>" class="dashboard-profile-img">
+        <% end %>
+        <div class="dashboard-profile-info">
+          <h1>Profile</h1>
+          <p><%= @current_user.first_name %> <%= @current_user.last_name %></p>
 
-      <div role="tabpanel" class="tab-pane" id="pending">
-        <%= render "bookings/index", bookings: @bookings.where(status: "pending") %>
-      </div>
+          <p>Gender: <%= @current_user.gender %></p>
+          <p>Email: <%= @current_user.email %></p>
+       </div>
 
-      <div role="tabpanel" class="tab-pane" id="rejected">
-        <%= render "bookings/index", bookings: @bookings.where(status: "rejected") %>
+        <p></p>
+
+        <p class="text-center padded">
+        <%= link_to('Edit profile', edit_user_registration_path, { class: "btn btn-profile" })%>
+        <%= link_to('Home', root_path, { class: "btn btn-profile" })%>
+        </p>
       </div>
     </div>
 
-  <div class="my-men">
-  <!-- My men that I created -->
-    <div class="container text-center padded">
-        <% if @men.present? %>
-        <!-- <div class="container text-center padded">
-          <h2>Here are your Boys!</h2>
-        </div> -->
-        <div class="container">
-          <div class="row">
-            <% @men.each do |man| %>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= man.photos.any? ? cl_image_path(man.photos.first.path) : '' %>');">
-              <div class="card-description">
-                <h2><%= man.name %></h2>
-                <h3><%= man.summary %></h3>
-                <p><%= man.height %> cm  <%= man.weight %> Kg  <%= man.price %> RMB</p>
+    <div class="col-xs-12 col-md-9">
+      <div class="dashboard-navbar">
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#bookings" aria-controls="home" role="tab" data-toggle="tab">Men you booked</a></li>
+        <li role="presentation"><a href="#your-men" aria-controls="profile" role="tab" data-toggle="tab">Your men</a></li>
+        <li role="presentation"><a href="#requests" aria-controls="messages" role="tab" data-toggle="tab">Requests for your men</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane" id="requests">
+          <div class="container text-center">
+            <% @requests.each do |request| %>
+              <% man = request.man %>
+
+              <div class="request-row">
+
+                <div class="requests-container">
+                  <div class=>
+                    <img src="<%= cl_image_path man.photos.first.path %>" class="request-img">
+                    <p class="request-name"> <%= man.name %> </p>
+                  </div>
+
+                  <div class="">
+                    <p> Start time: <%= request.start_time %> </p>
+                    <p> End time: <%= request.end_time %> </p>
+                    <p> Status: <%= request.status %> </p>
+                  </div>
+
+                  <div style="width: 200px" class="action">
+                    <% if request.status == "pending" %>
+                    <%= simple_form_for [man, request]  do |f| %>
+                      <%= f.hidden_field :action, value: "confirm" %>
+                      <%= f.submit "Accept", class: "btn btn-primary btn-float-left" %>
+                    <% end %>
+
+                    <%= simple_form_for [man, request]  do |f| %>
+                      <%= f.hidden_field :action, value: "cancel" %>
+                      <%= f.submit "Reject", class: "btn btn-primary btn-float-left" %>
+                    <% end %>
+                  <% end %>
+
+                  <% if request.status == "confirmed" %>
+                    <%= simple_form_for [man, request]  do |f| %>
+                      <%= f.hidden_field :action, value: "cancel" %>
+                      <%= f.submit "Cancel", class: "btn btn-primary btn-float-left" %>
+                    <% end %>
+                  <% end %>
+                  </div>
+                </div>
               </div>
-              <%= link_to("", man_path(man), class: "card-link") %>
-            </div>
-            </div>
             <% end %>
           </div>
         </div>
-      <% else %>
-        <div class="container text-center" style="margin-top: 100px">
-         <h3 id="empty">You don't seem to own any Hunks...</h3>
-        </div>
-      <% end %>
-    </div>
-  </div>
 
-  <!-- Man assets -->
-  <div class="requests">
-    <div class="container text-center">
-      <% @requests.each do |request| %>
-        <% man = Man.find(request.man_id) %>
 
-        <div class="request-row">
-          <div class="requests-container">
-            <div>
-              <img src="<%= cl_image_path man.photos.first.path %>" class="request-img">
-              <p class="request-name"> <%= man.name %> </p>
-            </div>
+        <!-- Patricia's code below -->
+        <div role="tabpanel" class="tab-pane" id="your-men">
 
-            <div class="info">
-              <p> Start time: <%= request.start_time %> </p>
-              <p> End time: <%= request.end_time %> </p>
-              <p> Status: <%= request.status.capitalize %> </p>
-            </div>
-
-            <div class="action" style="width: 200px">
-              <% if request.status == "pending" %>
-              <%= simple_form_for [man, request]  do |f| %>
-                <%= f.hidden_field :action, value: "confirm" %>
-                <%= f.submit "Accept", class: "btn btn-float-left" %>
-
+          <div class="my-men">
+    <!-- My men that I created -->
+            <div class="container text-center padded">
+                <% if @men.present? %>
+                <!-- <div class="container text-center padded">
+                  <h2>Here are your Boys!</h2>
+                </div> -->
+                <div class="container">
+                  <div class="row">
+                    <% @men.each do |man| %>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= man.photos.any? ? cl_image_path(man.photos.first.path) : '' %>');">
+                      <div class="card-description">
+                        <h2><%= man.name %></h2>
+                        <h3><%= man.summary %></h3>
+                        <p><%= man.height %> cm  <%= man.weight %> Kg  <%= man.price %> RMB</p>
+                      </div>
+                      <%= link_to("", man_path(man), class: "card-link") %>
+                    </div>
+                    </div>
+                    <% end %>
+                  </div>
+                </div>
+              <% else %>
+                <div class="container text-center" style="margin-top: 100px">
+                 <h3 id="empty">You don't seem to own any Hunks...</h3>
+                </div>
               <% end %>
-
-              <%= simple_form_for [man, request]  do |f| %>
-                <%= f.hidden_field :action, value: "cancel" %>
-                <%= f.submit "Reject", class: "btn btn-float-left" %>
-              <% end %>
-
-            <% end %>
-
-            <% if request.status == "confirmed" %>
-              <%= simple_form_for [man, request]  do |f| %>
-                <%= f.hidden_field :action, value: "cancel" %>
-                <%= f.submit "Cancel", class: "btn btn-float-left" %>
-              <% end %>
-            <% end %>
             </div>
           </div>
+
         </div>
-      <% end %>
+        <div role="tabpanel" class="tab-pane active" id="bookings">
+
+          <div class="tabs nav nav-tabs booking-tabs text-center">
+            <span class="active ">
+              <a href="#all" class="tab" data-toggle="tab">All</a>
+            </span>
+            <span>
+              <a href="#confirmed" class="tab" data-toggle="tab">Confirmed</a>
+            </span>
+            <span>
+              <a href="#pending" class="tab" data-toggle="tab">Pending</a>
+            </span>
+            <span>
+              <a href="#rejected" class="tab" data-toggle="tab">Rejected</a>
+            </span>
+          </div>
+
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="all">
+              <%= render "bookings/index", bookings: @bookings %>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="confirmed">
+              <%= render "bookings/index", bookings: @bookings.where(status: "confirmed") %>
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="pending">
+              <%= render "bookings/index", bookings: @bookings.where(status: "pending") %>
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="rejected">
+              <%= render "bookings/index", bookings: @bookings.where(status: "rejected") %>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+      </div>
     </div>
+
   </div>
 </div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
