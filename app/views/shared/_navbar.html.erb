@@ -4,37 +4,18 @@
     <%= image_tag "logo.png" %>
   <% end %>
 
-
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
-
-<!--   Search form
-    <form action="" class="navbar-wagon-search">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
-      <button type="submit" class="navbar-wagon-search-btn">
-        <i class="fa fa-search"></i>
-      </button>
-    </form> -->
-<div>
-    <%= link_to about_path do %>
-      <div class="navbar-about">
-        <span class="navbar-about" > About </span>
-      </div>
-    <% end %>
-</div>
-<div>
-    <%= link_to dashboard_path do %>
-      <div class="navbar-about">
-        <span class="navbar-about" > Dashboard </span>
-      </div>
-    <% end %>
-
-</div>
+    <div>
+      <%= link_to about_path do %>
+        <div class="navbar-about">
+          <span class="navbar-about" > About </span>
+        </div>
+      <% end %>
+    </div>
 
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
-
-
       <!-- Create a man -->
       <%= link_to new_man_path, class: "navbar-wagon-item navbar-wagon-button" do %>
         <div class="badge-container" id="mars">
@@ -64,8 +45,8 @@
         <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to user_path(current_user) do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+              <%= link_to dashboard_path do %>
+                <i class="fa fa-user"></i> <%= t(".profile", default: "Dashboard") %>
               <% end %>
             </li>
             <li>
@@ -81,16 +62,13 @@
           </ul>
         </div>
       </div>
-
     <% else %>
-
       <!-- Login text link -->
       <%= link_to "Log in", new_user_session_path, class: "navbar-wagon-item navbar-wagon-button" %>
 
       <!-- Button (call-to-action) -->
       <%= link_to "Join AirBnHe", new_user_registration_path , class: "navbar-wagon-item navbar-wagon-button" %>
     <% end %>
-
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
