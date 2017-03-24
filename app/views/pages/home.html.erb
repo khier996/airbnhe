@@ -7,21 +7,7 @@
   </div>
 
   <!-- Search bar -->
-  <div class="container text-center" style="margin-bottom: 50px; margin-top: 50px">
-
-    <%= form_tag(men_path, :method => "get", id: "search-form") do %>
-    <%= select_tag(:services, options_for_select([['Services'],
-                   ['Fake Wedding'], ['Meet the parents'], ['Meet the friends'], ['Cuddling'], ['Dinner Date'], ['Park Walk']]))%>
-    <%= select_tag(:height, options_for_select([['Height'],
-                   ['100-150', '1'], ['150-200', '2'], ['200-250', '3']]))%>
-    <%= select_tag(:price, options_for_select([['Price'],
-                   ['1000-2000', '1'], ['2000-3000', '2'], ['3000+', '3']]))%>
-    <%= text_field_tag :search, nil, placeholder: "His name?" %>
-
-    <%= submit_tag("Search", :class => "btn btn-primary")%>
-
-    <% end %>
-  </div>
+  <%= render 'search_form'%>
 
   <!-- Man card for suggestions-->
   <div class="container" >
