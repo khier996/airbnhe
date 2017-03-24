@@ -1,26 +1,13 @@
-  <h1 class="text-center"><%= @man.name%> </h1>
 
-<div class="wraper" >
+
+  <div class="wraper" >
+  <h1 class="text-center title"><%= @man.name%> </h1>
   <div class="container intro_summary">
     <div class="row">
       <div class="col-xs-12 col-sm-7 ">
         <!-- insert <div class="card"> -->
-        <h3> Summary: </h3>
+        <h3 class="summary_style"> <i class="fa fa-commenting"></i> Summary: </h3>
         <p><%= @man.description %></p>
-      </div>
-      <div class="col-xs-12 col-sm-5">
-      <% if @man.photos.any? %>
-        <%= render 'carousel'%>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-
-
-<div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6">
       <!-- description -->
         <h3> <i class="fa fa-quote-right"></i> Description: </h3>
         <p><%= @man.description %></p>
@@ -48,22 +35,34 @@
           <li> <strong>Price:</strong> </li>
           <li> <%= @man.price %> USD</li>
         </ul>
-        <div class="block_butt">
+        <ul class="block_butt">
         <%= link_to 'Update', edit_man_path(@man), { class: "btn btn-treehouse"} %>
         <%= link_to 'Destroy', man_path(@man), method: :delete, class: "btn btn-danger" %>
-        </div>
+        </ul>
       </div>
-      <div class="col-xs-12 col-sm-6" style="background:lightgrey; height:400px;">
-      <!-- booking form -->
-        <%= render 'inputform_booking' %>
+      <div class="col-xs-12 col-sm-5">
+      <% if @man.photos.any? %>
+        <%= render 'carousel'%>
+        <% end %>
+      </div>
+     </div>
+    </div>
 
-      </div>
+  </div>
+
+  <div class="wrapper_form container">
+
+    <div class="text-center block_butt">
+      <h3 class="font_color"> Let's do the booking to "!!!"</h3>
+        <!-- booking form -->
+          <%= render 'inputform_booking' %>
+
     </div>
   </div>
-</div>
 
+   <div class="wrapper_map container" >
   <div id="map" style="width: 100%; height: 500px;"></div>
-
+  </div>
 
 
 <% content_for(:after_js) do %>
@@ -83,4 +82,6 @@
     });
   <% end %>
 <% end %>
+
+
 
