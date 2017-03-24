@@ -5,7 +5,7 @@ has_many :bookings, dependent: :destroy
   has_many :bookings
   belongs_to :user
 
-  after_create :send_confirmation_email
+  # after_create :send_confirmation_email
 
 
   geocoded_by :address

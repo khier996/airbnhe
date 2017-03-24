@@ -1,7 +1,7 @@
 <div class="container padded">
   <div class="new-man-form form-group">
-   <form class="well form-horizontal" style="max-width: 800px">
-      <fieldset>
+   <div class="well form-horizontal" style="max-width: 800px">
+
         <%= simple_form_for(@man) do |f| %>
             <%= f.input :name, placeholder: "Name", class: "form-control", label: false %>
             <%= f.input :address, placeholder: 'Address', class: "form-control", label: false %>
@@ -18,8 +18,8 @@
           </div>
           <%= f.submit class: "btn btn-primary" %>
         <% end %>
-      </fieldset>
-   </form>
+
+   </div>
   </div>
 </div>
 
