@@ -4,7 +4,12 @@
   <div class="row dashboard-row">
     <div class="hidden-sm hidden-xs col-md-3">
       <div class="dashboard-profile">
-        <%= cl_image_tag @current_user.profile_photo.path, height: 300, width: 300, crop: :fill, radius: 5, angle:0, effect: "sepia", class: "dashboard-profile-img" %>
+        <% if @current_user.profile_photo %>
+          <%= cl_image_tag @current_user.profile_photo.path, height: 300, width: 300, crop: :fill, radius: 5, angle:0, effect: "sepia", class: "dashboard-profile-img" %>
+        <% end %>
+        <% if @current_user[:facebook_picture_url] %>
+          <img src="<%= @current_user[:facebook_picture_url] %>" class="dashboard-profile-img">
+        <% end %>
         <div class="dashboard-profile-info">
           <h1>Profile</h1>
           <p><%= @current_user.first_name %> <%= @current_user.last_name %></p>
