@@ -13,9 +13,6 @@ class BookingsController < ApplicationController
     end
   end
 
-  def update
-  end
-
   def booking_params
     params.require(:booking).permit(:start_time, :end_time)
   end
@@ -29,12 +26,16 @@ class BookingsController < ApplicationController
       booking.save
 
       redirect_to dashboard_path
+
     elsif action == "cancel"
-      booking.status = "Rejected"
+      booking.status = "rejected"
       booking.save
 
       redirect_to dashboard_path
     end
+  end
+
+  def delete
   end
 
   def booking_params
