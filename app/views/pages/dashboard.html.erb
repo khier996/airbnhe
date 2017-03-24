@@ -1,13 +1,122 @@
 <!-- see all the men that have been booked by the user -->
+
+<div class="dashboard-container">
+  <div class="row dashboard-row">
+    <div class="hidden-sm hidden-xs col-md-3">
+      <div class="dashboard-profile">
+        <%= cl_image_tag @current_user.profile_photo.path, height: 300, width: 300, crop: :fill, radius: 5, angle:0, effect: "sepia", class: "dashboard-profile-img" %>
+        <div class="dashboard-profile-info">
+          <h1>Profile</h1>
+          <p><%= @current_user.first_name %> <%= @current_user.last_name %></p>
+
+          <p>Gender: <%= @current_user.gender %></p>
+          <p>Email: <%= @current_user.email %></p>
+       </div>
+
+        <p></p>
+
+        <p class="text-center padded">
+        <%= link_to('Edit profile', edit_user_registration_path, { class: "btn btn-primary" })%>
+        <%= link_to('Home', root_path, { class: "btn btn-primary" })%>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-md-9">
+      <div class="dashboard-navbar">
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Men you booked</a></li>
+        <li role="presentation"><a href="#your-men" aria-controls="profile" role="tab" data-toggle="tab">Your men</a></li>
+        <li role="presentation"><a href="#requests" aria-controls="messages" role="tab" data-toggle="tab">Requests for your men</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+          <div class="container text-center">
+            <% @requests.each do |request| %>
+              <% man = Man.find(request.man_id) %>
+
+              <div class="request-row">
+
+                <div class="requests-container">
+                  <div class=>
+                    <img src="<%= cl_image_path man.photos.first.path %>" class="request-img">
+                    <p class="request-name"> <%= man.name %> </p>
+                  </div>
+
+                  <div class="">
+                    <p> Start time: <%= request.start_time %> </p>
+                    <p> End time: <%= request.end_time %> </p>
+                    <p> Status: <%= request.status %> </p>
+                  </div>
+
+                  <div style="width: 200px">
+                    <% if request.status == "pending" %>
+                    <%= simple_form_for [man, request]  do |f| %>
+                      <%= f.hidden_field :action, value: "confirm" %>
+                      <%= f.submit "Accept", class: "btn btn-primary btn-float-left" %>
+                    <% end %>
+
+                    <%= simple_form_for [man, request]  do |f| %>
+                      <%= f.hidden_field :action, value: "cancel" %>
+                      <%= f.submit "Reject", class: "btn btn-primary btn-float-left" %>
+                    <% end %>
+                  <% end %>
+
+                  <% if request.status == "confirmed" %>
+                    <%= simple_form_for [man, request]  do |f| %>
+                      <%= f.hidden_field :action, value: "cancel" %>
+                      <%= f.submit "Cancel", class: "btn btn-primary btn-float-left" %>
+                    <% end %>
+                  <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+
+        <!-- Patricia's code below -->
+        <div role="tabpanel" class="tab-pane" id="your-men">Put your code here</div>
+        <div role="tabpanel" class="tab-pane" id="requests">Put your code here</div>
+
+      </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="user-booking-overview">
-  <h1>Bookings</h1>
-  <br>
   <!-- Status check dropdown plus according action -->
   <!-- status check method-->
-  <p class="text-center">You booked <%= @bookings.count %> men </p>
-  <div class="dropdown">
+  <!-- <div class="dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <%= @current_choice.capitalize %>
+      <%= @current_choice %>
         <span class="text-right caret"></span>
     </button>
     <ul class="dropdown-menu">
@@ -16,9 +125,16 @@
       <li><a href="?bookings=pending" id="pending">Pending</a></li>
       <li><a href="?bookings=rejected" id="rejected">Rejected</a></li>
     </ul>
+  </div> -->
+
+  <div class="tabs">
+    <a id="all" class="tab">All</a>
+    <a id="confirmed" class="tab">Confirmed</a>
+    <a id="pending" class="tab">Pending</a>
+    <a id="rejected" class="tab">Rejected</a>
   </div>
 
-    <!-- Man card -->
+  <!-- Man card -->
   <div class="container" >
     <div class="row">
       <% @bookings.each do |booking| %>
@@ -36,7 +152,6 @@
       <% end %>
     </div>
   </div>
-
 </div>
   <!-- Book more men -->
   <div>
@@ -50,21 +165,8 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-<br><br><br>
-
 <!-- My men that I created -->
-
 <div class="container text-center padded">
-
     <% if @men.present? %>
     <div class="container text-center padded">
       <h2>Here are your Boys!</h2>
@@ -94,38 +196,23 @@
   <% end %>
 </div>
 
-
-<br><br><br>
-
-
-
-
-
-
-
-
+<!-- Man assets -->
 <div class="container text-center">
-
-
   <% @requests.each do |request| %>
     <% man = Man.find(request.man_id) %>
 
     <div class="request-row">
-
       <div class="requests-container">
         <div class=>
           <img src="<%= cl_image_path man.photos.first.path %>" class="request-img">
           <p class="request-name"> <%= man.name %> </p>
         </div>
 
-
-
         <div class="">
           <p> Start time: <%= request.start_time %> </p>
           <p> End time: <%= request.end_time %> </p>
           <p> Status: <%= request.status %> </p>
         </div>
-
 
         <div style="width: 200px">
           <% if request.status == "pending" %>
@@ -147,12 +234,9 @@
           <% end %>
         <% end %>
 
-
-
         </div>
       </div>
     </div>
-
   <% end %>
 </div>
 
