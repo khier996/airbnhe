@@ -1,8 +1,21 @@
+.wrapper-dashboard {
+  background-color: #FAFAFA;
+  padding: 20px;
+}
+
+.tabs a {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
 .request-row {
   width: 80%;
   background-color: #efeae1;
   border-radius: 5px;
   border-shadow: 3px 3px 5px 5px grey;
+  margin: 30px;
 }
 
 .requests-container {
@@ -10,38 +23,51 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
+  background-color: white;
 }
 
 .relative {
   position: relative;
 }
 
-
 .request-img {
-  width: 200px;
-  height: 200px;
+  width: 320px;
   margin-top: 20px;
 }
-
 
 .request-name {
   font-size: 3rem;
 }
 
-
 .btn-float-left {
   display: inline-block;
   float: left;
   margin-right: 20px;
+  background: white;
 }
 
+.action {
+  display: inline-block;
+  float: left;
+  margin-right: 20px;
+  color: #CF8E03;
 
+  a, .btn-float-left {
+      color: #CF8E03;
+
+      border: none;
+
+      &:hover {
+        background: white;
+        color: #201D2D;
+      }
+  }
+}
 
 .dashboard-container {
   width: 100%;
   margin-top: 30px;
 }
-
 
 .dashboard-profile {
   padding-top: 30px;
@@ -72,6 +98,14 @@
   overflow: scroll;
 }
 
+#bookings .nav-tabs {
+  padding: 15px 0;
+}
+
+#bookings .nav-tabs:hover {
+  color: #CF8E03;
+}
+
 @media screen and (max-width: 991px) {
   .dashboard-row {
     width: 100%;
@@ -87,7 +121,9 @@
   }
 }
 
-
+.btn-profile {
+    color: #CF8E03;
+}
 
 
 

@@ -1,0 +1,26 @@
+<div class="container" >
+  <div class="row">
+    <% bookings.each do |booking| %>
+    <div class="request-row">
+    <div class="requests-container">
+      <div class>
+        <% if booking.man.photos.any? %>
+        <img src="<%= cl_image_path booking.man.photos.first.path %>" class="request-img">
+        <% end %>
+        <p class="request-name"> <%= booking.man.name %> </p>
+      </div>
+
+      <div class="info">
+        <p> Start time: <%= booking.start_time %> </p>
+        <p> End time: <%= booking.end_time %> </p>
+        <p> Status: <%= booking.status.capitalize %> </p>
+      </div>
+       <div class="action">
+        <a class="btn btn-float-left" href="">Update</a>
+        <a class="btn btn-float-left" href="">Delete</a>
+     </div>
+    </div>
+    </div>
+    <% end %>
+  </div>
+</div>
